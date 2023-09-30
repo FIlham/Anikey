@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title><%= result.title?.english || result.title?.romaji || "" %> - Anikey</title>
+        <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+        <style>
+        header #banner-img {
+            background-image: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(0,0,0,0.5797945151990143) 100%),
+                url(<%= `${result.bannerImage}` %>);
+            height: 15rem;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            margin-bottom: 8rem;
+        }
+        </style>
+    </head>
+    <body id="animeView">
+        <header>
+            <div id="banner-img">
+                <img src=<%= `${result.coverImage.extraLarge}` %> alt="cover image" id="cover-img" />
+            </div>
+            <h2><%= result.title?.english || result.title?.romaji || "" %></h2>
+        </header>
+        <div class="general-info">
+            <p><b>Status:</b> <%= result.status %></p>
+            <p><b>Start Date:</b> <%= `${result.startDate.day}, ${result.startDate.month} ${result.startDate.year}` %></p>
+            <% if (result.endDate.day && result.endDate.month && result.endDate.year) { %>
+                <p><b>End Date:</b> <%= `${result.endDate.day}, ${result.endDate.month} ${result.endDate.year}` %></p>
+            <% } %>
+            <% if (result.season) { %>
+                <p><b>Season:</b> <%= result.season %></p>
+            <% } %>
+            <% if (result.episodes) { %>
+                <p><b>Episodes:</b> <%= result.episodes %></p>
+            <% } %>
+            <% if (result.duration) { %>
+                <p><b>Episode Duration:</b> <%= result.duration %></p>
+            <% } %>
+            <% if (result.chapters) { %>
+                <p><b>Chapters:</b> <%= result.chapters %></p>
+            <% } %>
+            <% if (result.volumes) { %>
+                <p><b>Volumes:</b> <%= result.volumes %></p>
+            <% } %>
+            <p><b>Format:</b> <%= result.format %></p>
+        </div>
+        <div class="description">
+            <%- result.description %>
+        </div>
+        
+    </body>
+</html>
